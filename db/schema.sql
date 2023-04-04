@@ -8,7 +8,7 @@ create table if not exists masseure (
 );
 
 
-create table if not exists Zeitraster (
+create table if not exists zeitraster (
     ZR_ID bigserial primary key,
     Zeit_von timestamp,
     Zeit_bis timestamp
