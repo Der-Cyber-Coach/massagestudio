@@ -1,5 +1,5 @@
 import os 
-import postgres
+import psycopg2
 
 
 class masseur:
