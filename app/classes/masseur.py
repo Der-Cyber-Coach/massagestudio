@@ -29,6 +29,16 @@ class masseur:
         
         return self.cursor.fetchall()
     
+    def create(self, name:str):
+        '''Erstellt einen neuen Masseur'''
+        self.cursor = self.db.cursor()
+        try:
+            self.cursor.execute(f"INSERT INTO masseur (name) VALUES ('{name}');")
+            print("Masseur erstellt")
+        except:
+            print("Masseur konnte nicht erstellt werden")
+            
+        
     
         
         
