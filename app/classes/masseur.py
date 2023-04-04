@@ -10,7 +10,7 @@ class masseur:
     
     def __init__(self) -> None:
         try:
-            db = psycopg2.connect(database='massagestudio',host='localhost', user='postgres', password='password', port='9988')
+            self.db = psycopg2.connect(database='massagestudio',host='localhost', user='postgres', password='password', port='9988')
             print("Datenbankverbindung hergestellt")
         except:
             print("Keine DB-Verbindung hergestellt")
@@ -25,18 +25,23 @@ class masseur:
             _type_: Liste mit den gefundenen Masseuren
         """        
         self.cursor = self.db.cursor()
-        self.cursor.execute(f"SELECT * FROM masseur WHERE name = '{name}';")
+        self.cursor.execute(f"SELECT * FROM masseure WHERE MA_NAME = '{name}';")
+        result = self.cursor.fetchall()
+        self.cursor.close()
+        return result
         
-        return self.cursor.fetchall()
-    
     def create(self, name:str):
         '''Erstellt einen neuen Masseur'''
         self.cursor = self.db.cursor()
         try:
-            self.cursor.execute(f"INSERT INTO masseur (name) VALUES ('{name}');")
+            self.cursor.execute(f"INSERT INTO masseure ('MA_NAME') VALUES ('{name}');")
+            self.cursor.commit()
             print("Masseur erstellt")
+            self.cursor.close()
         except:
             print("Masseur konnte nicht erstellt werden")
+        self.cursor.close()
+        
             
         
     
@@ -45,4 +50,8 @@ class masseur:
             
 
 if __name__=='__main__':
-    test = masseur()
+    
+    masseur = masseur()
+    masseur.search('Hans')
+    masseur.create('Hans')
+    
