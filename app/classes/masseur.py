@@ -55,7 +55,7 @@ class masseur:
             self.cursor.execute(f"UPDATE masseure SET MA_NAME = '{name_neu}' WHERE MA_NAME = '{name_alt}';")
             print(f"Masseur {name_alt} wurde zu {name_alt} geändert")
         except:
-            print(f"Der Masseur mit dem Namen {name} konnte nicht geändert werden")
+            print(f"Der Masseur mit dem Namen {name_alt} konnte nicht geändert werden")
             self.cursor.close()
             
     def delete(self, name:str):
