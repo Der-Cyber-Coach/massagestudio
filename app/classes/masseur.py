@@ -34,8 +34,11 @@ class masseur:
         print (result)
         
     def create(self, name:str):
-        '''Erstellt einen neuen Masseur'''
-        
+        """Erstellt einen neuen Masseur
+
+        Args:
+            name (str): Name des Masseurs
+        """      
 
         self.cursor = self.db.cursor()
         
@@ -48,7 +51,12 @@ class masseur:
             self.cursor.close()
             
     def update(self, name_neu:str, name_alt:str):
-        '''Ändert einen Masseur'''
+        """Ändert den Namen eines Bestehtenden Masseurs. Achtung: Es wird der Name geändert, nicht der Primärschlüssel
+
+        Args:
+            name_neu (str): Neuer Name des Masseurs
+            name_alt (str): Alter Name des Masseurs
+        """        
         
         try:
             self.cursor = self.db.cursor()
@@ -59,6 +67,11 @@ class masseur:
             self.cursor.close()
             
     def delete(self, name:str):
+        """Löscht einen Masseur, Achtung: Es wird der Name gelöscht, nicht der Primärschlüssel
+
+        Args:
+            name (str): Name des Masseurs
+        """        
         try:
             self.cursor = self.db.cursor()
             self.cursor.execute(f"DELETE FROM masseure WHERE MA_NAME = '{name}';")
