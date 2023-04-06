@@ -50,8 +50,17 @@ class patienten:
     
                 
     
-    def update(self, name_alt:str, name_neu: str, patientennummer:int):
-        pass
+    def update(self, name_alt:str, name_neu: str):
+        try:
+            self.cursor = self.db.cursor()
+            self.cursor.execute(f"UPDATE patienten SET pa_name = '{name_neu}' WHERE pa_name = '{name_alt}';")
+            print(f"Der Name des Patienten {name_alt} wurde zu {name_neu} geändert;")
+        except:
+            print(f"Fehler, der Name des Patienten {name_alt} konnte nicht zu {name_neu} geändert werden.")
+            self.cursor.close()
+            self.db.close()
+            os._exit(1)
+            
     
     
     
