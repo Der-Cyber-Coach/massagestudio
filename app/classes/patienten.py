@@ -55,6 +55,9 @@ class patienten:
             self.cursor = self.db.cursor()
             self.cursor.execute(f"UPDATE patienten SET pa_name = '{name_neu}' WHERE pa_name = '{name_alt}';")
             print(f"Der Name des Patienten {name_alt} wurde zu {name_neu} geändert;")
+            self.db.commit()
+            self.cursor.close()
+            self.db.close()
         except:
             print(f"Fehler, der Name des Patienten {name_alt} konnte nicht zu {name_neu} geändert werden.")
             self.cursor.close()
@@ -62,7 +65,26 @@ class patienten:
             os._exit(1)
             
     
+    def delete(self,patientennummer:int):
+        """Löscht einen Patienten anhand der Patientennummer
+
+        Args:
+            patientennummer (int): Nummer des Patienten. Suche benutzen um sie herauszufinden.
+        """        
+        try:
+            self.cursor = self.db.cursor()
+            self.cursor.execute(f"DELETE FROM patienten WHERE pa_id = {patientennummer};")
+            print(f"Patient mit der  Patientennummer {patientennummer} wurde gelöscht.")
+            self.db.commit()
+            self.cursor.close()
+            self.db.close()
+        except:
+            print(f"Der Patient mit der Patientennummer {patientennummer} konnte leider nicht gelöscht werden.")
+            self.cursor.close()
+            self.db.close()
+            os._exit(1)
     
+            
     
     
 
@@ -77,5 +99,6 @@ if __name__=='__main__':
     patient.search('Hans',1)
     patient.create('Jens')
     patient.search('Jens',2)
+    patient.delete(2)
             
 
