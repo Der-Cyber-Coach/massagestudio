@@ -100,5 +100,6 @@ if __name__=='__main__':
     patient.create('Jens')
     patient.search('Jens',2)
     patient.delete(2)
+    patient.search('Jens',2)
             
 
