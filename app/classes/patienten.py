@@ -28,9 +28,14 @@ class patienten:
             print(f"Fehler: Der Patient mit der Patientennummer: {patientennummer} und dem Namen: {name} konnte nicht gefunden werden.")
             os._exit(1)
     
+    
        
     def create(self, name:str):
-        '''erstellt einen neuen patienten'''
+        """Erstellt einen Patienten und fügt in in die Datenbank ein
+
+        Args:
+            name (str): Vor- und Nachname des Patienten
+        """        
         try:
             self.cursor = self.db.cursor()
             self.cursor.execute(f"INSERT INTO patienten(pa_name) VALUES ('{name}');")
@@ -61,6 +66,7 @@ class patienten:
 if __name__=='__main__':
     patient = patienten()
     patient.search('Hans',1)
-
+    patient.create('Jens')
+    patient.search('Jens',2)
             
 

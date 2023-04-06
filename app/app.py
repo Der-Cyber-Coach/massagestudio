@@ -9,9 +9,13 @@ def main():
     root.resizable(False, False)
     masseur = classes.masseur()
     name = 'Hans'
-    suche = masseur.search(name)
-    button_masseure = tkinter.Button(root, text="Masseure", command=suche)
+    suche_masseur = masseur.search(name)
+    patient = classes.patienten()
+    suche_patient = patient.search(name)
+    button_masseure = tkinter.Button(root, text="Masseure suchen", command=suche_masseur)
     button_masseure.pack()
+    button_patientensuche = tkinter.Button(root,text="Patientensuche",command=suche_patient)
+    button_patientensuche.pack()
     
     root.mainloop()
     
