@@ -16,7 +16,17 @@ class patienten:
     # Patientensuche
     
     def search(self,name:str,patientennummer:int):
-        pass
+        '''Suche nach einem Patienten'''
+        try:
+            self.cursor=self.db.cursor()
+            self.cursor.execute(f"SELECT * from patienten WHERE pa_id= {patientennummer} AND pa_name = {name};")
+            result = self.cursor.fetchall()
+            print(result)
+        except:
+            self.db.close()
+            print(f"Fehler: Der Patient mit der Patientennummer: {patientennummer} und dem Namen: {name} konnte nicht gefunden werden.")
+            os._exit(1)
+        
     
     
     
