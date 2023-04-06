@@ -23,14 +23,27 @@ class patienten:
             result = self.cursor.fetchall()
             print(result)
         except:
+            self.cursor.close()
             self.db.close()
             print(f"Fehler: Der Patient mit der Patientennummer: {patientennummer} und dem Namen: {name} konnte nicht gefunden werden.")
             os._exit(1)
     
        
     def create(self, name:str):
-        pass
+        '''erstellt einen neuen patienten'''
+        try:
+            self.cursor = self.db.cursor()
+            self.cursor.execute(f"INSERT INTO patienten(pa_name) VALUES ('{name}');")
+            print(f"Der Patient {name} wurde in die Patientendatei aufgenommen.")
+            self.db.commit()
+            self.cursor.close()
+        except:
+            print(f"Fehler, der Patient {name} wurde nicht aufgenommen.")
+            self.cursor.close()
+            self.db.close()
+            os._exit(1)
     
+                
     
     def update(self, name_alt:str, name_neu: str, patientennummer:int):
         pass
