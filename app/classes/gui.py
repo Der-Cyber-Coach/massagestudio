@@ -46,15 +46,31 @@ class view(raum):
         self.masseure.geometry("800x600")
         self.masseure.resizable(False, False)
         self.masseure.configure(bg="white")
-       # self.masseur_erstellen = self.masseur.create('Test')
-        self.masseur_löschen = self.masseur.delete('Test')
-        self.masseur_ändern = self.masseur.update('Test', 'Test2')
-        self.masseur_suchen = self.masseur.search('Test')
+        self.eingabevariable = tkinter.StringVar()
+       
         
         
         # Button funktionen: Funktionen müssen definiert werden, damit sie beim Klicken aufgerufen werden können
-        def masseur_erstellen():
-            self.masseur_erstellen = self.masseur.create('Test')
+        def eingabe_erstellen():#
+           # self.ausgabevariable = f"Der Masseur {self.eingabevariable.get()} wird erstellt"
+            Entry = tkinter.Entry(self.masseure, textvariable=self.eingabevariable)
+            Entry.pack()
+            def masseur_erstellen():
+                if self.eingabevariable.get() == "":
+                    
+                    self.ausgabevariable = "Bitte einen Namen eingeben"
+                    label = tkinter.Label(self.masseure, text=self.ausgabevariable)
+                    label.pack()
+                    os._exit(1)
+                elif self.eingabevariable.get() != "":
+                    ausgabevariable = f"Der Masseur {self.eingabevariable.get()} wird erstellt"
+                    self.ausgabevariable.configure(text=ausgabevariable)
+                    self.masseur.create(self.eingabevariable.get())
+                    self.eingabevariable.set("")
+            self.button_ERSTELLEN = tkinter.Button(self.masseure, text="Masseur erstellen", command=masseur_erstellen)
+            self.button_ERSTELLEN.pack()
+            
+            
         def masseur_löschen():
             self.masseur_löschen = self.masseur.delete('Test')
         def masseur_ändern():
@@ -63,7 +79,7 @@ class view(raum):
             self.masseur_suchen = self.masseur.search('Test')
             
         # Buttons
-        self.button_masseur_erstellen = tkinter.Button(self.masseure, text="Masseur erstellen", command=masseur_erstellen)
+        self.button_masseur_erstellen = tkinter.Button(self.masseure, text="Masseur erstellen", command=eingabe_erstellen)
         self.button_masseur_löschen = tkinter.Button(self.masseure, text="Masseur löschen", command=masseur_löschen)
         self.button_masseur_ändern = tkinter.Button(self.masseure, text="Masseur ändern", command=masseur_ändern)
         self.button_masseur_suchen = tkinter.Button(self.masseure, text="Masseur suchen", command=masseur_suchen)
