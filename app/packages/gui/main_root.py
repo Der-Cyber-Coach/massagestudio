@@ -1,8 +1,10 @@
 import tkinter
+import psycopg2
 
-from ..datamodels.masseur import *
-from ..datamodels.patienten import *
-from ..datamodels.raum import *
+
+from packages import datamodels
+from .raum_view import *
+
  
 
 class main_root(raum):
@@ -15,7 +17,8 @@ class main_root(raum):
         self.root.title("Massagestudio")
         self.root.geometry("800x600")
         self.root.resizable(False, False)
-        button_raum = tkinter.Button(self.root, text="Raumverwaltung", command=self.raum)
+        self.raum_view = raum_view()
+        button_raum = tkinter.Button(self.root, text="Raumverwaltung", command=self.raum_view)
         button_Masseure = tkinter.Button(self.root, text="Masseurverwaltung",command=self.masseure)
         button_Patienten = tkinter.Button(self.root, text="Patientenverwaltung",command=self.patienten)
         buttton_termine = tkinter.Button(self.root, text="Terminbuchung",command=self.termine)
