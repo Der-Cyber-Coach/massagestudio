@@ -1,12 +1,16 @@
 import tkinter
-import packages.gui.main_root as gui
+import packages
+
 
 
 
 
 def main():
-   root=gui.main_root()
-   root.mainloop()
+   root=packages.gui.main_root()
+   root.root()
+   root.root.mainloop()
+   
+   
 
 
 if __name__=='__main__':
