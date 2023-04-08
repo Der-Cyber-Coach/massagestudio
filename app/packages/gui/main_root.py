@@ -33,7 +33,7 @@ class main_root(datamodels.raum):
             
             
             
-        self.button_raum = tkinter.Button(self.root, text="Raumverwaltung", command=raum_window_button())
+        self.button_raum = tkinter.Button(self.root, text="Raumverwaltung", command=raum_window_button)
         #button_Masseure = tkinter.Button(root, text="Masseurverwaltung",command=masseure)
        # button_Patienten = tkinter.Button(root, text="Patientenverwaltung",command=patienten)
        # buttton_termine = tkinter.Button(root, text="Terminbuchung",command=termine)
