@@ -9,6 +9,8 @@ class view(raum):
      
     def __init__(self):
         super().__init__()
+        schema = 'massagestudio'
+        self.db = psycopg2.connect(database='postgres',host='localhost', user='postgres', password='password', port='9988',options=f"-c search_path={schema}")
         
     
     def root(self):
@@ -27,6 +29,7 @@ class view(raum):
         button_alleslöschen.pack()
         button_raum.pack()
         self.root.configure(bg="white")
+        self.ausgabevariable = tkinter.StringVar()
         return self.root
         
     def raum(self):
@@ -61,10 +64,12 @@ class view(raum):
                     self.ausgabevariable = "Bitte einen Namen eingeben"
                     label = tkinter.Label(self.masseure, text=self.ausgabevariable)
                     label.pack()
-                    os._exit(1)
+                    
                 elif self.eingabevariable.get() != "":
-                    ausgabevariable = f"Der Masseur {self.eingabevariable.get()} wird erstellt"
-                    self.ausgabevariable.configure(text=ausgabevariable)
+                    self.ausgabevariable = f"Der Masseur {self.eingabevariable.get()} wird erstellt"
+                    label = tkinter.Label(self.masseure, text=self.ausgabevariable)
+                    label.pack(side="right")
+                    #self.ausgabevariable.configure(text=self.ausgabevariable)
                     self.masseur.create(self.eingabevariable.get())
                     self.eingabevariable.set("")
             self.button_ERSTELLEN = tkinter.Button(self.masseure, text="Masseur erstellen", command=masseur_erstellen)
