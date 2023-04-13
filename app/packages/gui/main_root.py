@@ -8,6 +8,8 @@ from .masseur_view import *
 from .patienten_view import *
 from .termin_view import *
 
+
+
  
 
 class main_root(datamodels.raum):
@@ -21,7 +23,7 @@ class main_root(datamodels.raum):
     def root(self):
         self.root = tkinter.Tk()
         self.root.title("Massagestudio")
-        self.root.geometry("600x400")
+        self.root.geometry("800x300")
         self.root.resizable(False, False)
         self.root.configure(bg="white")
        
