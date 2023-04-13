@@ -4,6 +4,9 @@ import psycopg2
 
 from packages import datamodels
 from .raum_view import *
+from .masseur_view import *
+from .patienten_view import *
+from .termin_view import *
 
  
 
@@ -18,7 +21,7 @@ class main_root(datamodels.raum):
     def root(self):
         self.root = tkinter.Tk()
         self.root.title("Massagestudio")
-        self.root.geometry("800x600")
+        self.root.geometry("600x400")
         self.root.resizable(False, False)
         self.root.configure(bg="white")
        
@@ -29,19 +32,25 @@ class main_root(datamodels.raum):
                 raum_window = raum_gui()
                 raum_window.root()
             
-            
+        def masseure_window_button():
+                masseur_window = masseur_gui() 
+                masseur_window.root()   
+        def patienten_window_button():
+                patienten_window = patienten_gui()
+                patienten_window.root()
+        def termine_window_button():
+                termine_window = termin_gui()
+                termine_window.root()
             
             
             
         self.button_raum = tkinter.Button(self.root, text="Raumverwaltung", command=raum_window_button)
-        #button_Masseure = tkinter.Button(root, text="Masseurverwaltung",command=masseure)
-       # button_Patienten = tkinter.Button(root, text="Patientenverwaltung",command=patienten)
-       # buttton_termine = tkinter.Button(root, text="Terminbuchung",command=termine)
-       # button_alleslöschen = tkinter.Button(root, text="Alles löschen",command=alleslöschen)
-      #  button_Masseure.pack()
-       # button_Patienten.pack()
-      #  buttton_termine.pack()
-      #  button_alleslöschen.pack()
+        self.button_Masseur = tkinter.Button(self.root, text="Masseurverwaltung",command=masseure_window_button)
+        self.button_Patienten = tkinter.Button(self.root, text="Patientenverwaltung",command=patienten_window_button)
+        self.buttton_termine = tkinter.Button(self.root, text="Terminbuchung",command=termine_window_button)
+        self.button_Masseur.pack(side="left", padx=10, pady=10)
+        self.button_Patienten.pack(side="left", padx=10, pady=10)
+        self.buttton_termine.pack(side = "left", padx=10, pady=10)
         self.button_raum.pack(side="left", padx=10, pady=10)
         
        
